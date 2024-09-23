@@ -57,8 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getSID(): String {
-        val date: LocalDateTime = LocalDateTime.now().plusHours(9).plusSeconds(11)
-
+        var date: LocalDateTime = LocalDateTime.now().plusSeconds(11)
         val month = date.monthValue.toString().padStart(2, '0')
         val day = date.dayOfMonth.toString().padStart(2, '0')
         val hour = date.hour.toString().padStart(2, '0')
