@@ -37,13 +37,18 @@
             const ms = ('00000'+(date.getMilliseconds() * 100)).slice(-5);
             const sid = 'CB   00' + id.toString() + date.getFullYear().toString() + month + day + hour + min + second + ms;
 
-            //console.log(month)
             return sid;
         };
 
         const qrInput = document.getElementById('qrInput');
         const qrcodeContainer = document.getElementById('qrcode');
         const downloadButton = document.getElementById('downloadButton');
+        const qrqr = document.getElementById('qrcode')
+
+        base_image = new Image();
+        base_image.src = 'sidbypass.png';
+        qrqr.appendChild(base_image)
+        
 
         downloadButton.addEventListener('click', () => {
             qrcodeContainer.innerHTML = ''; // Clear previous QR code
@@ -53,7 +58,5 @@
             });
         });
 
-        // Generate initial QR code
-        generateButton.click();
     </script>
 </html>
