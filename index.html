@@ -12,7 +12,8 @@
             border-width: 0 0 2px;
         }
     </style>
-    <title>제 2의 학생증</title>
+    <link rel="icon" href="sidbypass_180.png" sizes="180x180">
+    <title>제2의 학생증</title>
 </head>
 <body>
     <div class="container mx-auto p-8"></div>
@@ -27,6 +28,19 @@
     </div>
 
     <script>
+        var setCookie = function(name, value, exp) {
+	        var date = new Date();
+	        date.setTime(date.getTime() + exp*24*60*60*1000);
+	        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+        };
+        var getCookie = function(name) {
+	        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	        return value? value[2] : null;
+        };
+        var deleteCookie = function(name) {
+	        document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+        }
+
         function getSID(id) {
             var date = new Date();
             const month = ('00'+(date.getMonth() + 1)).slice(-2);
@@ -48,15 +62,23 @@
         base_image = new Image();
         base_image.src = 'sidbypass.png';
         qrqr.appendChild(base_image)
-        
 
         downloadButton.addEventListener('click', () => {
+            var id2 = qrInput.value;
+            if (id2 != null && id2 != "") setCookie("id", id2, 10000000);
+
             qrcodeContainer.innerHTML = ''; // Clear previous QR code
-            QRCode.toCanvas(getSID(qrInput.value), { width: 256 }, function (error, canvas) {
+            QRCode.toCanvas(getSID(id2), { width: 256 }, function (error, canvas) {
                 if (error) console.error(error);
                 qrcodeContainer.appendChild(canvas);
             });
         });
+
+        var id = getCookie("id");
+        if (id != null) {
+            qrInput.value = id
+            downloadButton.click();
+        }
 
     </script>
 </html>
