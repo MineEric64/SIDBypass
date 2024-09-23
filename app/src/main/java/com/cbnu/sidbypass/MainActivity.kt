@@ -27,6 +27,7 @@ import java.time.ZonedDateTime
 
 class MainActivity : AppCompatActivity() {
     var id = 0
+    var timerSeconds = 30
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,19 +67,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            var seconds = 30
             val refreshText = findViewById<TextView>(R.id.refreshText)
 
             while(true) {
                 delay(1000)
                 if (id == 0) continue
-                seconds--
+                timerSeconds--
 
-                if (seconds == 0) {
+                if (timerSeconds == 0) {
                     LaunchQR()
-                    seconds = 30
+                    timerSeconds = 30
                 }
-                refreshText.setText("${seconds}초 후 새로고침...")
+                refreshText.setText("${timerSeconds}초 후 새로고침...")
             }
         }
     }
@@ -124,6 +124,8 @@ class MainActivity : AppCompatActivity() {
 
             edit.putString("id", id.toString())
             edit.apply()
+            timerSeconds = 30
+
             LaunchQR()
         }
         else {
