@@ -13,6 +13,15 @@
 
 ## 안드로이드
 1. [다운로드](https://github.com/MineEric64/SIDBypass/releases/latest/download/SIDBypass.apk) 및 설치
+
+![setup1](https://github.com/MineEric64/SIDBypass/blob/main/setup1.jpg?raw=true)
+설치 시 이런 문구가 나오면, '무시하고 설치' 버튼을 눌러주세요.
+
+![setup2](https://github.com/MineEric64/SIDBypass/blob/main/setup2.jpg?raw=true)
+설치 시 이런 문구가 나오면, '앱 검사' 버튼을 눌러주세요.
+
+아니면 '세부정보 더보기'란을 눌러서 '검사 없이 설치' 버튼을 눌러도 됩니다.
+
 2. 학번 입력
 3. **저장** 버튼 클릭
 
