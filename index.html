@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <style>
+        #qrcode canvas {
+            margin: auto;
+        }
+        .bottom-border {
+            border-width: 0 0 2px;
+        }
+    </style>
+    <title>제 2의 학생증</title>
+</head>
+<body>
+    <div class="container mx-auto p-8"></div>
+        <div class="max-w-md mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">제 2의 학생증</h3>
+                <div id="qrcode" class="mb-4"></div>
+                <div>학번: <br/><input type="text" name="id" id="qrInput" value="" class="bottom-border"></div>
+                <button id="downloadButton" class="bg-purple-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getSID(id) {
+            var date = new Date();
+            const month = ('00'+date.getMonth()).slice(-2);
+            const day = ('00'+date.getDay()).slice(-2);
+            const hour = ('00'+date.getHours()).slice(-2);
+            const min = ('00'+date.getMinutes()).slice(-2);
+            const second = ('00'+date.getSeconds()).slice(-2);
+            const ms = ('00000'+(date.getMilliseconds() * 100)).slice(-5);
+            const sid = 'CB   00' + id.toString() + date.getFullYear().toString() + month + day + hour + min + second + ms;
+
+            return sid;
+        };
+
+        const qrInput = document.getElementById('qrInput');
+        const qrcodeContainer = document.getElementById('qrcode');
+        const downloadButton = document.getElementById('downloadButton');
+
+        downloadButton.addEventListener('click', () => {
+            qrcodeContainer.innerHTML = ''; // Clear previous QR code
+            QRCode.toCanvas(getSID(qrInput.innerText), { width: 256 }, function (error, canvas) {
+                if (error) console.error(error);
+                qrcodeContainer.appendChild(canvas);
+            });
+        });
+
+        // Generate initial QR code
+        generateButton.click();
+    </script>
+</html>
