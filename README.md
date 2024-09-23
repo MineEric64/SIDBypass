@@ -2,9 +2,15 @@
 ![logo](https://github.com/MineEric64/SIDBypass/blob/main/sidbypass3.png?raw=true)
  > [!NOTE]
  > **휴학생**을 위한 충북대학교 모바일 학생증 앱
-> 
+>
 
 # 사용법
+충북대학교 모바일 학생증 앱과 사용 방법이 비슷합니다.
+
+단 다른 사람의 학번이 필요로 하며, 이제 휴학생도 충북대학교의 인증이 필요한 다른 기관들을 이용할 수 있습니다.
+
+안드로이드는 '제 2의 학생증' 앱을 제공하며, iOS는 웹사이트를 통해 사용할 수 있습니다.
+
 ## 안드로이드
 1. [다운로드](https://github.com/MineEric64/SIDBypass/releases/latest/download/SIDBypass.apk) 및 설치
 2. 학번 입력
