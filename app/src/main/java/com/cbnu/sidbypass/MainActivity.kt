@@ -2,6 +2,7 @@ package com.cbnu.sidbypass
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.Settings.Global
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -13,8 +14,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -47,17 +52,39 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        //TODO: 설정 만들기
+        val sharedPref = getSharedPreferences("user", MODE_PRIVATE)
+        id = sharedPref.getString("id", "0").toString().toInt()
+
         if (id > 0) {
+            val idText = findViewById<EditText>(R.id.idText)
+
+            idText.setText(id.toString())
             LaunchQR()
         }
         else {
             Toast.makeText(this, "최초 실행 시 학번을 입력해주세요.", Toast.LENGTH_LONG).show()
         }
+
+        lifecycleScope.launch {
+            var seconds = 30
+            val refreshText = findViewById<TextView>(R.id.refreshText)
+
+            while(true) {
+                delay(1000)
+                if (id == 0) continue
+                seconds--
+
+                if (seconds == 0) {
+                    LaunchQR()
+                    seconds = 30
+                }
+                refreshText.setText("${seconds}초 후 새로고침...")
+            }
+        }
     }
 
     fun getSID(): String {
-        var date: LocalDateTime = LocalDateTime.now().plusSeconds(11)
+        var date: LocalDateTime = LocalDateTime.now().plusSeconds(4)
         val month = date.monthValue.toString().padStart(2, '0')
         val day = date.dayOfMonth.toString().padStart(2, '0')
         val hour = date.hour.toString().padStart(2, '0')
@@ -92,6 +119,11 @@ class MainActivity : AppCompatActivity() {
         else id = 0
 
         if (id > 0) {
+            val sharedPref = getSharedPreferences("user", MODE_PRIVATE)
+            val edit = sharedPref.edit()
+
+            edit.putString("id", id.toString())
+            edit.apply()
             LaunchQR()
         }
         else {
