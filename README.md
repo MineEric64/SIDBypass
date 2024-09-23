@@ -26,7 +26,9 @@
 3. **저장** 버튼 클릭
 
 ## iOS
-준비중...
+1. [cbnu2.kro.kr](http://cbnu2.kro.kr)나 [mineeric64.github.io/SIDBypass](https://mineeric64.github.io/SIDBypass)에 접속
+2. 학번 입력
+3. **저장** 버튼 클릭
 
 # 유의사항
 - 개발자는 '제 2의 학생증' 앱을 사용하므로써 생긴 불이익에 관해 어느 법적 책임도 지지 않습니다.
