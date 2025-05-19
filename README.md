@@ -36,7 +36,7 @@
 1. [mineeric64.github.io/SIDBypass/library.html](https://mineeric64.github.io/SIDBypass/library.html)에 접속
 2. **휴학생이 아닌** 다른 사람의 학번 입력
 3. **저장** 버튼 클릭
-이 페이지는 도서관 전용 웹사이트로 사용이 가능합니다.
+> 이 페이지는 **도서관 전용** 웹사이트로 사용이 가능합니다.
 
 # 유의사항
 - 개발자는 '제 2의 학생증' 앱을 사용하므로써 생긴 불이익에 관해 어느 법적 책임도 지지 않습니다.
